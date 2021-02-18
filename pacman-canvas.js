@@ -21,7 +21,7 @@ const GHOSTS = {
 };
 
 // global constants
-const FINAL_LEVEL = 1;
+const FINAL_LEVEL = 10;
 const PILL_POINTS = 10;
 const POWERPILL_POINTS = 50;
 const GHOST_POINTS = 100;
@@ -156,7 +156,7 @@ function geronimo() {
   // Manages the whole game ("God Object")
   function Game() {
     this.timer = new Timer(); // TODO: implememnt properly, and submit with highscore
-    this.refreshRate = 33; // speed of the game, will increase in higher levels
+    this.refreshRate = 30; // speed of the game, will increase in higher levels
 
     this.started = false; // TODO: what's the purpose of this exactly?
     this.pause = true;
@@ -275,6 +275,8 @@ function geronimo() {
       this.score.refresh(".score");
       pacman.lives = 3;
       game.level = 1;
+      game.refreshRate = 33;
+      game.ghostFrightenedTimer = 240;
       this.refreshLevel(".level");
 
       this.pause = false;
@@ -297,7 +299,9 @@ function geronimo() {
         game.showHighscoreForm();
         this.init(0);
       } else {
-        this.level++;
+        this.level = this.level + 1;
+        game.refreshRate = game.refreshRate - 3;
+        game.ghostFrightenedTimer = game.ghostFrightenedTimer - 15;
         console.log("Level " + game.level);
         game.pauseAndShowMessage(
           "Level " + game.level,
@@ -509,7 +513,7 @@ function geronimo() {
 
       // initalize Ghosts, avoid memory flooding
       if (pinky === null || pinky === undefined) {
-        pinky = new Ghost(GHOSTS.PINKY, 7, 5, "img/beer.svg", 2, 2);
+        pinky = new Ghost(GHOSTS.PINKY, 7, 5, "img/pinky.svg", 2, 2);
         inky = new Ghost(GHOSTS.INKY, 8, 5, "img/beer.svg", 13, 11);
         blinky = new Ghost(GHOSTS.BLINKY, 9, 5, "img/beer.svg", 13, 0);
         clyde = new Ghost(GHOSTS.CLYDE, 10, 5, "img/beer.svg", 2, 11);
@@ -556,7 +560,7 @@ function geronimo() {
     /* ------------ Start Pre-Build Walls  ------------ */
     this.buildWalls = function () {
       if (this.ghostMode === 0) game.wallColor = "Blue";
-      else game.wallColor = "Red";
+      else game.wallColor = "Blue";
       canvas_walls = document.createElement("canvas");
       canvas_walls.width = game.canvas.width;
       canvas_walls.height = game.canvas.height;
