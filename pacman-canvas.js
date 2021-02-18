@@ -503,18 +503,10 @@ function geronimo() {
 				blinky.reset();
 				clyde.reset();
 			}
-			setTimeout(() => {
-				blinky.start();	// blinky is the first to leave ghostHouse
-			}, 1000);
-			
-			setTimeout(() => {
-				inky.start();
-			}, 1500);
-			
-			setTimeout(() => {
-				pinky.start();
-				clyde.start();
-			}, 2000);
+			blinky.start();	// blinky is the first to leave ghostHouse
+			inky.start();
+			pinky.start();
+			clyde.start();
 		};
 
 		this.checkForLevelUp = function () {
@@ -790,6 +782,17 @@ function geronimo() {
 			// leave Ghost House
 			if (this.ghostHouse == true) {
 
+				// Clyde does not start chasing before 2/3 of all pills are eaten and if level is < 4
+				if (this.name == GHOSTS.CLYDE) {
+					if ((game.level < 4) || ((game.pillCount > 104 / 3))) this.stop = true;
+					else this.stop = false;
+				}
+				// Inky starts after 30 pills and only from the third level on
+				if (this.name == GHOSTS.INKY) {
+					if ((game.level < 3) || ((game.pillCount > 104 - 30))) this.stop = true;
+					else this.stop = false;
+				}
+
 				if ((this.getGridPosY() == 5) && this.inGrid()) {
 					if ((this.getGridPosX() == 7)) this.setDirection(right);
 					if ((this.getGridPosX() == 8) || this.getGridPosX() == 9) this.setDirection(up);
@@ -846,8 +849,11 @@ function geronimo() {
 				var tX = this.startPosX / 30;
 				var tY = this.startPosY / 30;
 			}
-			
-			else {			
+			else if (game.ghostMode == 0) {			// Scatter Mode
+				var tX = this.gridBaseX;
+				var tY = this.gridBaseY;
+			} else if (game.ghostMode == 1) {			// Chase Mode
+
 				switch (this.name) {
 
 					// target: 4 ahead and 4 left of pacman
@@ -961,7 +967,7 @@ function geronimo() {
 					if (this.getOppositeDirection().equals(left)) this.setDirection(right);
 					else this.setDirection(left);
 					break;
-				}
+			}
 		}
 		this.reverseDirection = function () {
 			console.log("reverseDirection: " + this.direction.name + " to " + this.getOppositeDirection().name);
@@ -1560,7 +1566,7 @@ function geronimo() {
 	function animationLoop() {
 		canvas.width = canvas.width;
 		// enable next line to show grid
-		//renderGrid(pacman.radius, "red");
+		// renderGrid(pacman.radius, "red");
 		renderContent();
 
 		if (game.dieAnimation == 1) pacman.dieAnimation();
