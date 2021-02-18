@@ -21,11 +21,11 @@ const GHOSTS = {
 }
 
 // global constants
-const FINAL_LEVEL = 10;
+const FINAL_LEVEL = 1;
 const PILL_POINTS = 10;
 const POWERPILL_POINTS = 50;
 const GHOST_POINTS = 100;
-const HIGHSCORE_ENABLED = true;
+const HIGHSCORE_ENABLED = false;
 
 
 function geronimo() {
