@@ -509,10 +509,10 @@ function geronimo() {
 
       // initalize Ghosts, avoid memory flooding
       if (pinky === null || pinky === undefined) {
-        pinky = new Ghost(GHOSTS.PINKY, 7, 5, "img/pinky.svg", 2, 2);
-        inky = new Ghost(GHOSTS.INKY, 8, 5, "img/inky.svg", 13, 11);
-        blinky = new Ghost(GHOSTS.BLINKY, 9, 5, "img/blinky.svg", 13, 0);
-        clyde = new Ghost(GHOSTS.CLYDE, 10, 5, "img/clyde.svg", 2, 11);
+        pinky = new Ghost(GHOSTS.PINKY, 7, 5, "img/beer.svg", 2, 2);
+        inky = new Ghost(GHOSTS.INKY, 8, 5, "img/beer.svg", 13, 11);
+        blinky = new Ghost(GHOSTS.BLINKY, 9, 5, "img/beer.svg", 13, 0);
+        clyde = new Ghost(GHOSTS.CLYDE, 10, 5, "img/beer.svg", 2, 11);
       } else {
         pinky.reset();
         inky.reset();
