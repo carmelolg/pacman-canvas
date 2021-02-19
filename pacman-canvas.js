@@ -37,63 +37,6 @@ function geronimo() {
 
   var mapConfig = "data/map.json";
 
-  /* AJAX stuff */
-  var getHighscore = () => {
-    setTimeout(ajax_get, 30);
-  };
-  var ajax_get = () => {
-    var date = new Date().getTime();
-    $.ajax({
-      datatype: "json",
-      type: "GET",
-      url: "data/db-handler.php",
-      data: {
-        timestamp: date,
-        action: "get",
-      },
-      success: function (msg) {
-        $("#highscore-list").text("");
-        for (var i = 0; i < msg.length; i++) {
-          $("#highscore-list").append(
-            "<li>" +
-              msg[i]["name"] +
-              "<span id='score'>" +
-              msg[i]["score"] +
-              "</span></li>"
-          );
-        }
-      },
-    });
-  };
-  var ajax_add = (n, s, l) => {
-    $.ajax({
-      type: "POST",
-      url: "data/db-handler.php",
-      data: {
-        action: "add",
-        name: n,
-        score: s,
-        level: l,
-      },
-      dataType: "json",
-      success: function (data) {
-        console.log("Highscore added: " + data);
-        $("#highscore-form").html(
-          '<span class="button" id="show-highscore">View Highscore List</span>'
-        );
-      },
-      error: function (errorThrown) {
-        console.log(errorThrown);
-      },
-    });
-  };
-
-  function addHighscore() {
-    var name = $("input[type=text]").val();
-    $("#highscore-form").html("Saving highscore...");
-    ajax_add(name, game.score.score, game.level);
-  }
-
   function buildWall(context, gridX, gridY, width, height) {
     console.log("BuildWall");
     width = width * 2 - 1;
@@ -1639,8 +1582,8 @@ function geronimo() {
 
       // Pac Man
       context.beginPath();
-      context.fillStyle = "Yellow";
-      context.strokeStyle = "Yellow";
+      context.fillStyle = 'rgb(255,0,0)';
+      context.strokeStyle = 'rgb(255,0,0)';
       context.arc(
         pacman.posX + pacman.radius,
         pacman.posY + pacman.radius,
