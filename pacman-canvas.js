@@ -299,7 +299,7 @@ function geronimo() {
         game.showHighscoreForm();
         this.init(0);
       } else {
-        this.level = this.level + 1;
+        game.level = game.level + 1;
         game.refreshRate = game.refreshRate - 3;
         game.ghostFrightenedTimer = game.ghostFrightenedTimer - 15;
         console.log("Level " + game.level);
