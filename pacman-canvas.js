@@ -330,31 +330,22 @@ function geronimo() {
       switch (this.level) {
         case 2:
           return '"The chase begins"';
-        // activate chase / scatter switching
         case 3:
           return '"Inkys awakening"';
-        // Inky starts leaving the ghost house
         case 4:
           return '"Clydes awakening"';
-        // Clyde starts leaving the ghost house
         case 5:
           return '"need for speed"';
-        // All the ghosts get faster from now on
         case 6:
           return '"hunting season 1"';
-        // TODO: No scatter mood this time
         case 7:
           return '"the big calm"';
-        // TODO: Only scatter mood this time
         case 8:
           return '"hunting season 2"';
-        // TODO: No scatter mood and all ghosts leave instantly
         case 9:
           return '"ghosts on speed"';
-        // TODO: Ghosts get even faster for this level
         case FINAL_LEVEL:
           return '"The final chase"';
-        // TODO: Ghosts get even faster for this level
         default:
           return '"nothing new"';
       }
@@ -511,12 +502,12 @@ function geronimo() {
       this.ghostMode = 0; // 0 = Scatter, 1 = Chase
       this.ghostModeTimer = 200; // decrements each animationLoop execution
 
-      // initalize Ghosts, avoid memory flooding
+      // initalize Ghosts, avoid memory flooding 
       if (pinky === null || pinky === undefined) {
-        pinky = new Ghost(GHOSTS.PINKY, 7, 5, "img/pinky.svg", 2, 2);
-        inky = new Ghost(GHOSTS.INKY, 8, 5, "img/beer.svg", 13, 11);
-        blinky = new Ghost(GHOSTS.BLINKY, 9, 5, "img/beer.svg", 13, 0);
-        clyde = new Ghost(GHOSTS.CLYDE, 10, 5, "img/beer.svg", 2, 11);
+        pinky = new Ghost(GHOSTS.PINKY, 7, 5, "img/blinky_bicchiere.svg", 2, 2);
+        inky = new Ghost(GHOSTS.INKY, 8, 5, "img/blinky_bicchiere.svg", 13, 11);
+        blinky = new Ghost(GHOSTS.BLINKY, 9, 5, "img/blinky_bicchiere.svg", 13, 0);
+        clyde = new Ghost(GHOSTS.CLYDE, 10, 5, "img/blinky_bicchiere.svg", 2, 11);
       } else {
         pinky.reset();
         inky.reset();
@@ -742,7 +733,7 @@ function geronimo() {
       this.dazzled = false;
     };
     this.dazzleImg = new Image();
-    this.dazzleImg.src = "img/dazzled.svg";
+    this.dazzleImg.src = "img/dazzled_bicchiere.svg";
     this.dazzleImg2 = new Image();
     this.dazzleImg2.src = "img/dazzled2.svg";
     this.deadImg = new Image();
