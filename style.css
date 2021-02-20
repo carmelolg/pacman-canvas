@@ -35,7 +35,7 @@ h3 {    font-size: 1.5em; }
 .body,
 .wrapper {
   /* Break the flow */
-  /*position: absolute;*/
+  position: absolute;
   top: 0px;
 
   /* Give them all the available space */
@@ -73,7 +73,7 @@ html, body {
 	}
 body {
 	overflow-x: hidden;
-	overflow-y: scroll;
+	/*overflow-y: scroll*/;
 	}
 
 div.layout {
