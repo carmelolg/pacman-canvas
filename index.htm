@@ -36,117 +36,121 @@
 
 <body class="body">
 
-	<div class="container wrapper">
-		<div class="main">
+	<div class="wrapper">
+		<div class="container">
+			<div class="main">
 
 
-			<!-- Display this message if Javascript is disabled -->
-			<noscript>
-				<h2>Enable Javascript!</h2>
-				<p>This HTML 5 app requires Javascript to run. Please check that Javascript is enabled in your browser.
-				</p>
-			</noscript>
-
-			<!-- Info -->
-			<div class="content" id="info-content">
-				<div class="button" id="back">&lt; back</div>
-				<div>
-					<h1>Info</h1>
-					<!-- <p>Current Version: <span class="app-version">1.0.4 (2021-01-03)</span></p> -->
-					<!--<img src="img/platzh1rsch-logo.png">-->
-					<p>Made for <a href="https://www.edit-to.com/" target="_blank">EDIT Torino</a> with &#10084;</p>
-					<p>Reworked by <a href="https://carmelolg.github.com" target="_blank">carmelolg</a> + <a
-							href="https://www.ikigai.media/" target="_blank">IKIGAI MEDIA</a></p>
-					<p>The original open-source project was written by <a href="http://platzh1rsch.ch">platzh1rsch</a>.
-						<!--You can get the code on <a target="_blank" href="https://github.com/platzhersh/pacman-canvas" target="_blank">github</a>. -->
+				<!-- Display this message if Javascript is disabled -->
+				<noscript>
+					<h2>Enable Javascript!</h2>
+					<p>This HTML 5 app requires Javascript to run. Please check that Javascript is enabled in your
+						browser.
 					</p>
+				</noscript>
+
+				<!-- Info -->
+				<div class="content" id="info-content">
+					<div class="button" id="back">&lt; back</div>
+					<div>
+						<h1>Info</h1>
+						<!-- <p>Current Version: <span class="app-version">1.0.4 (2021-01-03)</span></p> -->
+						<!--<img src="img/platzh1rsch-logo.png">-->
+						<p>Made for <a href="https://www.edit-to.com/" target="_blank">EDIT Torino</a> with &#10084;</p>
+						<p>Reworked by <a href="https://carmelolg.github.com" target="_blank">carmelolg</a> + <a
+								href="https://www.ikigai.media/" target="_blank">IKIGAI MEDIA</a></p>
+						<p>The original open-source project was written by <a
+								href="http://platzh1rsch.ch">platzh1rsch</a>.
+							<!--You can get the code on <a target="_blank" href="https://github.com/platzhersh/pacman-canvas" target="_blank">github</a>. -->
+						</p>
+					</div>
 				</div>
-			</div>
 
 
-
-			<!-- main game content -->
-			<div class="content" id="game-content">
 
 				<!-- main game content -->
-				<div class="game wrapper">
+				<div class="content" id="game-content">
 
-					<div class="score">Score:</div>
-					<div class="level">Lvl:</div>
-					<div class="lives">Lives: </div>
+					<!-- main game content -->
+					<div class="game wrapper">
 
-					<div class="controlSound">
-						<img src="img/audio-icon-mute.png" id="mute">
-					</div>
-					<!-- canvas is splitted into 18x13 fields -->
-					<div id="canvas-container">
-						<div id="canvas-overlay-container">
-							<div id="canvas-overlay-content">
-								<div id="title">Pacman EDIT Torino</div>
-								<div>
-									<p id="text">Click to Play</p>
+						<div class="score">Score:</div>
+						<div class="level">Lvl:</div>
+						<div class="lives">Lives: </div>
+
+						<div class="controlSound">
+							<img src="img/audio-icon-mute.png" id="mute">
+						</div>
+						<!-- canvas is splitted into 18x13 fields -->
+						<div id="canvas-container">
+							<div id="canvas-overlay-container">
+								<div id="canvas-overlay-content">
+									<div id="title">Pacman EDIT Torino</div>
+									<div>
+										<p id="text">Click to Play</p>
+									</div>
 								</div>
 							</div>
+							<canvas id="myCanvas" width="540" height="390">
+								<p>Canvas not supported</p>
+							</canvas>
 						</div>
-						<canvas id="myCanvas" width="540" height="390">
-							<p>Canvas not supported</p>
-						</canvas>
-					</div>
 
-					<div class="controls" id="game-buttons">
-						<!-- Will be moved to Instructions 
+						<div class="controls" id="game-buttons">
+							<!-- Will be moved to Instructions 
 		<p class="nomobile">Use W-A-S-D keys to navigate Pac-Man</p>
 		-->
 
-						<!-- OLD Buttons -->
-						<div>
-							<span id="up" class="controlButton">&uarr;</span>
+							<!-- OLD Buttons -->
+							<div>
+								<span id="up" class="controlButton">&uarr;</span>
+							</div>
+							<div>
+								<span id="left" class="controlButton">&larr;</span>
+								<span id="down" class="controlButton">&darr;</span>
+								<span id="right" class="controlButton">&rarr;</span>
+							</div>
+
 						</div>
-						<div>
-							<span id="left" class="controlButton">&larr;</span>
-							<span id="down" class="controlButton">&darr;</span>
-							<span id="right" class="controlButton">&rarr;</span>
+						<!-- inGame Controls End -->
+
+						<!-- Game Menu -->
+						<div class="controls" id="menu-buttons">
+							<ul>
+								<li class="button" id="newGame">New Game</li>
+								<li class="button" id="info">Info</li>
+							</ul>
+
 						</div>
+						<!-- Game Menu End -->
 
 					</div>
-					<!-- inGame Controls End -->
 
-					<!-- Game Menu -->
-					<div class="controls" id="menu-buttons">
-						<ul>
-							<li class="button" id="newGame">New Game</li>
-							<li class="button" id="info">Info</li>
-						</ul>
+					<div class="description nomobile">
+
+						<span id="audio">
+							<audio id="theme" preload="auto">
+								<source src="wav/theme.wav" type="audio/wav">
+								<source src="mp3/theme.mp3" type="audio/mpeg">
+							</audio>
+							<audio id="waka" preload="auto">
+								<source src="wav/waka.wav" type="audio/wav">
+								<source src="mp3/waka.mp3" type="audio/mpeg">
+							</audio>
+							<audio id="die" preload="auto">
+								<source src="wav/die.wav" type="audio/wav">
+								<source src="mp3/die.mp3" type="audio/mpeg">
+							</audio>
+							<audio id="powerpill" preload="auto">
+								<source src="wav/powerpill.wav" type="audio/wav">
+								<source src="mp3/powerpill.mp3" type="audio/mpeg">
+							</audio>
+						</span>
+
 
 					</div>
-					<!-- Game Menu End -->
 
 				</div>
-
-				<div class="description nomobile">
-
-					<span id="audio">
-						<audio id="theme" preload="auto">
-							<source src="wav/theme.wav" type="audio/wav">
-							<source src="mp3/theme.mp3" type="audio/mpeg">
-						</audio>
-						<audio id="waka" preload="auto">
-							<source src="wav/waka.wav" type="audio/wav">
-							<source src="mp3/waka.mp3" type="audio/mpeg">
-						</audio>
-						<audio id="die" preload="auto">
-							<source src="wav/die.wav" type="audio/wav">
-							<source src="mp3/die.mp3" type="audio/mpeg">
-						</audio>
-						<audio id="powerpill" preload="auto">
-							<source src="wav/powerpill.wav" type="audio/wav">
-							<source src="mp3/powerpill.mp3" type="audio/mpeg">
-						</audio>
-					</span>
-
-
-				</div>
-
 			</div>
 		</div>
 	</div>
