@@ -83,6 +83,7 @@ body {
   line-height: 23px;
   background: url("img/bg-pattern-black.png") repeat;
   text-align: center;
+  overscroll-behavior-y: contain;
 }
 body {
   overflow-x: hidden;
