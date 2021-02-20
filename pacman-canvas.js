@@ -38,7 +38,7 @@ function geronimo() {
   var mapConfig = "data/map.json";
 
   function buildWall(context, gridX, gridY, width, height) {
-    console.log("BuildWall");
+    //console.log("BuildWall");
     width = width * 2 - 1;
     height = height * 2 - 1;
     context.fillRect(
@@ -115,7 +115,7 @@ function geronimo() {
       $(h).html("Lvl: " + this.level);
     };
     this.canvas = $("#myCanvas").get(0);
-    this.wallColor = "Blue";
+    this.wallColor = 'rgb(26,58,73)';
     this.width = this.canvas.width;
     this.height = this.canvas.height;
 
@@ -147,7 +147,7 @@ function geronimo() {
 
     /* Game Functions */
     this.startGhostFrightened = function () {
-      console.log("ghost frigthened");
+      //console.log("ghost frigthened");
       this.ghostFrightened = true;
       this.ghostFrightenedTimer = 240;
       inky.dazzle();
@@ -157,7 +157,7 @@ function geronimo() {
     };
 
     this.endGhostFrightened = function () {
-      console.log("ghost frigthened end");
+      //console.log("ghost frigthened end");
       this.ghostFrightened = false;
       inky.undazzle();
       pinky.undazzle();
@@ -182,7 +182,7 @@ function geronimo() {
       if (this.ghostModeTimer === 0 && game.level > 1) {
         this.ghostMode ^= 1;
         this.ghostModeTimer = 200 + this.ghostMode * 450;
-        console.log("ghostMode=" + this.ghostMode);
+        //console.log("ghostMode=" + this.ghostMode);
 
         game.buildWalls();
 
@@ -229,7 +229,7 @@ function geronimo() {
     this.newGame = function () {
       var r = confirm("Are you sure you want to restart?");
       if (r) {
-        console.log("new Game");
+        //console.log("new Game");
         this.init(0);
         this.forceResume();
       }
@@ -237,7 +237,7 @@ function geronimo() {
 
     this.nextLevel = function () {
       if (this.level === FINAL_LEVEL) {
-        console.log("next level, " + FINAL_LEVEL + ", end game");
+        //console.log("next level, " + FINAL_LEVEL + ", end game");
         game.endGame(true);
         game.showHighscoreForm();
         this.init(0);
@@ -245,7 +245,7 @@ function geronimo() {
         game.level = game.level + 1;
         game.refreshRate = game.refreshRate - 3;
         game.ghostFrightenedTimer = game.ghostFrightenedTimer - 15;
-        console.log("Level " + game.level);
+        //console.log("Level " + game.level);
         game.pauseAndShowMessage(
           "Level " + game.level,
           this.getLevelTitle() + "<br/>(Click to continue!)"
@@ -321,28 +321,25 @@ function geronimo() {
         maxLevelPointsPills + maxLevelPointsPowerpills + maxLevelPointsGhosts;
 
       const scoreIsValid = this.score.score / this.level <= maxLevelPoints;
-      console.log(
-        "validate score. score: " + this.score.score + ", level: " + this.level,
-        scoreIsValid
-      );
+      //console.log("validate score. score: " + this.score.score + ", level: " + this.level,scoreIsValid);
       return scoreIsValid;
     };
 
     this.showHighscoreForm = function () {
       var scoreIsValid = this.validateScoreWithLevel();
 
-      var inputHTML = scoreIsValid
-        ? `<div id='highscore-form'>
+      var inputHTML = scoreIsValid ?
+        `<div id='highscore-form'>
 					<span id='form-validator'></span>
 					<input type='text' id='playerName'/>
 					<span class='button' id='score-submit'>save</span>
-				</div>`
-        : `<div id='invalid-score'>Your score looks fake, the highscore list is only for honest players ;)</div>`;
+				</div>` :
+        `<div id='invalid-score'>Your score looks fake, the highscore list is only for honest players ;)</div>`;
       this.pauseAndShowMessage(
         "Game over",
         "Total Score: " +
-          this.score.score +
-          (HIGHSCORE_ENABLED ? inputHTML : "")
+        this.score.score +
+        (HIGHSCORE_ENABLED ? inputHTML : "")
       );
       $("#playerName").focus();
     };
@@ -372,7 +369,7 @@ function geronimo() {
 
     this.pauseResume = function () {
       if (this.gameOver) {
-        console.log("Cannot pause / resume. GameOver set to true.");
+        //console.log("Cannot pause / resume. GameOver set to true.");
         return;
       }
       if (!this.started) {
@@ -385,7 +382,7 @@ function geronimo() {
     };
 
     this.loadMapConfig = async () => {
-      console.log("load map config");
+      //console.log("load map config");
       return new Promise((resolve, reject) => {
         $.ajax({
           url: mapConfig,
@@ -394,7 +391,7 @@ function geronimo() {
           },
           dataType: "json",
           success: (data) => {
-            console.log("map connfig loaded");
+            //console.log("map connfig loaded");
             game.map = data;
             resolve(data);
           },
@@ -420,7 +417,7 @@ function geronimo() {
     };
 
     this.init = async (state) => {
-      console.log("init game " + state);
+      //console.log("init game " + state);
 
       // reset timer if restart
       if (state === 0) {
@@ -479,7 +476,7 @@ function geronimo() {
 
     this.endGame = function (allLevelsCompleted = false) {
       const win = allLevelsCompleted ?? false;
-      console.log("Game Over by " + (win ? "WIN" : "LOSS"));
+      //console.log("Game Over by " + (win ? "WIN" : "LOSS"));
       this.gameOver = true;
     };
 
@@ -493,8 +490,8 @@ function geronimo() {
 
     /* ------------ Start Pre-Build Walls  ------------ */
     this.buildWalls = function () {
-      if (this.ghostMode === 0) game.wallColor = "Blue";
-      else game.wallColor = "Blue";
+      if (this.ghostMode === 0) game.wallColor = 'rgb(26,58,73)';
+      else game.wallColor = 'rgb(26,58,73)';
       canvas_walls = document.createElement("canvas");
       canvas_walls.width = game.canvas.width;
       canvas_walls.height = game.canvas.height;
@@ -643,17 +640,17 @@ function geronimo() {
     this.speed = game.ghostSpeedNormal;
     this.images = JSON.parse(
       '{"normal" : {' +
-        `"${GHOSTS.INKY}" : "0",` +
-        `"${GHOSTS.PINKY}" : "1",` +
-        `"${GHOSTS.BLINKY}" : "2",` +
-        `"${GHOSTS.CLYDE}" : "3"` +
-        "}," +
-        '"frightened1" : {' +
-        '"left" : "", "up": "", "right" : "", "down": ""},' +
-        '"frightened2" : {' +
-        '"left" : "", "up": "", "right" : "", "down": ""},' +
-        '"dead" : {' +
-        '"left" : "", "up": "", "right" : "", "down": ""}}'
+      `"${GHOSTS.INKY}" : "0",` +
+      `"${GHOSTS.PINKY}" : "1",` +
+      `"${GHOSTS.BLINKY}" : "2",` +
+      `"${GHOSTS.CLYDE}" : "3"` +
+      "}," +
+      '"frightened1" : {' +
+      '"left" : "", "up": "", "right" : "", "down": ""},' +
+      '"frightened2" : {' +
+      '"left" : "", "up": "", "right" : "", "down": ""},' +
+      '"dead" : {' +
+      '"left" : "", "up": "", "right" : "", "down": ""}}'
     );
     this.image = new Image();
     this.image.src = image;
@@ -766,7 +763,7 @@ function geronimo() {
           (this.getGridPosX() == 8 || this.getGridPosX() == 9) &&
           this.inGrid()
         ) {
-          console.log("ghosthouse -> false");
+          //console.log("ghosthouse -> false");
           this.ghostHouse = false;
         }
       }
@@ -848,13 +845,13 @@ function geronimo() {
               (game.height / pacman.radius + 1);
             break;
 
-          // target: pacman
+            // target: pacman
           case GHOSTS.BLINKY:
             var tX = pacman.getGridPosX();
             var tY = pacman.getGridPosY();
             break;
 
-          // target:
+            // target:
           case GHOSTS.INKY:
             var tX = pacman.getGridPosX() + 2 * pacman.direction.dirX;
             var tY = pacman.getGridPosY() + 2 * pacman.direction.dirY;
@@ -864,7 +861,7 @@ function geronimo() {
             tY = Math.abs(blinky.getGridPosY() + vY * 2);
             break;
 
-          // target: pacman, until pacman is closer than 5 grid fields, then back to scatter
+            // target: pacman, until pacman is closer than 5 grid fields, then back to scatter
           case GHOSTS.CLYDE:
             var tX = pacman.getGridPosX();
             var tY = pacman.getGridPosY();
@@ -964,12 +961,7 @@ function geronimo() {
       }
     };
     this.reverseDirection = function () {
-      console.log(
-        "reverseDirection: " +
-          this.direction.name +
-          " to " +
-          this.getOppositeDirection().name
-      );
+      //console.log("reverseDirection: " + this.direction.name + " to " + this.getOppositeDirection().name);
       this.directionWatcher.set(this.getOppositeDirection());
     };
   }
@@ -987,7 +979,7 @@ function geronimo() {
     this.stop = true;
     this.directionWatcher = new directionWatcher();
     this.getNextDirection = function () {
-      console.log("Figure getNextDirection");
+      //console.log("Figure getNextDirection");
     };
     this.checkDirectionChange = function () {
       if (this.inGrid() && this.directionWatcher.get() == null)
@@ -1182,15 +1174,15 @@ function geronimo() {
             // check if possible to change direction without getting stuck
             console.log(
               "x: " +
-                this.getGridPosX() +
-                " + " +
-                this.directionWatcher.get().dirX
+              this.getGridPosX() +
+              " + " +
+              this.directionWatcher.get().dirX
             );
             console.log(
               "y: " +
-                this.getGridPosY() +
-                " + " +
-                this.directionWatcher.get().dirY
+              this.getGridPosY() +
+              " + " +
+              this.directionWatcher.get().dirY
             );
             var x = this.getGridPosX() + this.directionWatcher.get().dirX;
             var y = this.getGridPosY() + this.directionWatcher.get().dirY;
@@ -1369,13 +1361,15 @@ function geronimo() {
   // Action starts here:
 
   function hideAdressbar() {
-    console.log("hide adressbar");
+    //console.log("hide adressbar");
     $("html").scrollTop(1);
     $("body").scrollTop(1);
   }
 
   $(document).ready(function () {
-    $.ajaxSetup({ mimeType: "application/json" });
+    $.ajaxSetup({
+      mimeType: "application/json"
+    });
 
     $.ajaxSetup({
       beforeSend: function (xhr) {
@@ -1527,8 +1521,8 @@ function geronimo() {
 
     // Pills
     context.beginPath();
-    context.fillStyle = "White";
-    context.strokeStyle = "White";
+    context.fillStyle = 'rgb(255,255,255)'; //"White";
+    context.strokeStyle = 'rgb(255,237,0)'; //White
 
     var dotPosY;
     console.log("paint pills", game.map);
@@ -1582,8 +1576,8 @@ function geronimo() {
 
       // Pac Man
       context.beginPath();
-      context.fillStyle = 'rgb(255,0,0)';
-      context.strokeStyle = 'rgb(255,0,0)';
+      context.fillStyle = 'rgb(255,237,0)';
+      context.strokeStyle = 'rgb(255,237,0)';
       context.arc(
         pacman.posX + pacman.radius,
         pacman.posY + pacman.radius,

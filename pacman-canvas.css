@@ -21,8 +21,8 @@ body {
 /* Links */
 .main a, .main a:link, .main a:active, .main a:visited {
     padding: 5px;
-	background: #c80a0a;
-    color: rgb(255, 255, 255);
+	background: rgb(26,58,73);
+    color: rgb(255, 237, 0);
 }
 * { box-shadow: none !important; }
 
@@ -42,7 +42,7 @@ body {
 	float: right;
 }
 .button {
-	background: #c80a0a; 
+	background: rgb(26,58,73); 
 	cursor: pointer;
 	padding: 8px;
 	}
@@ -59,7 +59,7 @@ body {
 
 #highscore-form { margin-top: 8px; }
 input[type="text"]:hover, input[type="text"]:focus, input[type="password"]:hover, input[type="password"]:focus, textarea:hover, textarea:focus {
-    border: 1px #c80a0a solid;
+    border: 1px rgb(26,58,73) solid;
 }
 #highscore-list {}
 #score { float: right; }
@@ -158,18 +158,19 @@ audio {display: block; }
 
 .controlButton {
 	display: inline-block;
-	width: 90px;
-	height: 90px;
+	width: 50px;
+	height: 50px;
 	margin: 5px;
-	background: none repeat scroll 0% 0% #C80A0A;
-	line-height: 70px;
+	background: none repeat scroll 0% 0% rgb(26,58,73);
+	line-height: 40px;
 	border-radius: 50%;
 	font-weight: bold;
-	font-size: 60px;
+	font-size: 30px;
 	cursor: pointer;
 }
 .controlButton:hover, .controlButton:active {
-	background: #c00202;
+	background: rgb(255,237,0);
+	color: rgb(26,58,73);
 }
 
 .description { display: none; }
