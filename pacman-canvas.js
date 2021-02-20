@@ -551,20 +551,37 @@ function geronimo() {
 
       buildWall(context_walls, 0, 7, 2, 2);
       buildWall(context_walls, 16, 7, 2, 2);
-      buildWall(context_walls, 3, 7, 2, 2);
-      buildWall(context_walls, 13, 7, 2, 2);
+      //buildWall(context_walls, 3, 7, 2, 2);
+      //buildWall(context_walls, 13, 7, 2, 2);
 
-      buildWall(context_walls, 4, 8, 2, 2);
-      buildWall(context_walls, 12, 8, 2, 2);
-      buildWall(context_walls, 5, 8, 3, 1);
-      buildWall(context_walls, 10, 8, 3, 1);
-
-      buildWall(context_walls, 2, 10, 1, 1);
+      //buildWall(context_walls, 4, 8, 2, 2);
+      //buildWall(context_walls, 12, 8, 2, 2);
+      //buildWall(context_walls, 5, 8, 3, 1);
+      //buildWall(context_walls, 10, 8, 3, 1);
+    
+      /*buildWall(context_walls, 2, 10, 1, 1);
       buildWall(context_walls, 15, 10, 1, 1);
       buildWall(context_walls, 7, 10, 4, 1);
       buildWall(context_walls, 4, 11, 2, 2);
-      buildWall(context_walls, 12, 11, 2, 2);
+      buildWall(context_walls, 12, 11, 2, 2);*/
       /* ------------ End Pre-Build Walls  ------------ */
+
+      // Edit logo
+      buildWall(context_walls, 4, 8, 1, 3);      
+      buildWall(context_walls, 4, 8, 2, 1);      
+      buildWall(context_walls, 4, 9, 2, 1);     
+      buildWall(context_walls, 4, 10, 2, 1);
+      
+      buildWall(context_walls, 7, 8, 1, 3);      
+      buildWall(context_walls, 7, 8, 2, 1);      
+      buildWall(context_walls, 7, 10, 2, 1);
+      buildWall(context_walls, 8, 8, 1, 3);
+
+      buildWall(context_walls, 10, 8, 1, 3);
+
+      buildWall(context_walls, 13, 8, 1, 3);
+      buildWall(context_walls, 12, 8, 3, 1);
+    
     };
   }
 
