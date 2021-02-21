@@ -558,7 +558,7 @@ function geronimo() {
       //buildWall(context_walls, 12, 8, 2, 2);
       //buildWall(context_walls, 5, 8, 3, 1);
       //buildWall(context_walls, 10, 8, 3, 1);
-    
+
       /*buildWall(context_walls, 2, 10, 1, 1);
       buildWall(context_walls, 15, 10, 1, 1);
       buildWall(context_walls, 7, 10, 4, 1);
@@ -567,13 +567,14 @@ function geronimo() {
       /* ------------ End Pre-Build Walls  ------------ */
 
       // Edit logo
-      buildWall(context_walls, 4, 8, 1, 3);      
-      buildWall(context_walls, 4, 8, 2, 1);      
-      buildWall(context_walls, 4, 9, 2, 1);     
+
+      buildWall(context_walls, 4, 8, 1, 3);
+      buildWall(context_walls, 4, 8, 2, 1);
+      buildWall(context_walls, 4, 9, 2, 1);
       buildWall(context_walls, 4, 10, 2, 1);
-      
-      buildWall(context_walls, 7, 8, 1, 3);      
-      buildWall(context_walls, 7, 8, 2, 1);      
+
+      buildWall(context_walls, 7, 8, 1, 3);
+      buildWall(context_walls, 7, 8, 2, 1);
       buildWall(context_walls, 7, 10, 2, 1);
       buildWall(context_walls, 8, 8, 1, 3);
 
@@ -581,7 +582,11 @@ function geronimo() {
 
       buildWall(context_walls, 13, 8, 1, 3);
       buildWall(context_walls, 12, 8, 3, 1);
-    
+
+      buildWall(context_walls, 2, 10, 1, 1);
+      buildWall(context_walls, 15, 10, 1, 1);
+
+
     };
   }
 
@@ -846,6 +851,13 @@ function geronimo() {
         // go Home
         var tX = this.startPosX / 30;
         var tY = this.startPosY / 30;
+        if(this.name === GHOSTS.INKY){
+          tX = (this.startPosX - 1) / 30;
+        }
+        if(this.name === GHOSTS.BLINKY){
+          tX = (this.startPosX + 1) / 30;
+        }
+
       } else {
         switch (this.name) {
           // target: 4 ahead and 4 left of pacman
@@ -870,12 +882,20 @@ function geronimo() {
 
             // target:
           case GHOSTS.INKY:
-            var tX = pacman.getGridPosX() + 2 * pacman.direction.dirX;
-            var tY = pacman.getGridPosY() + 2 * pacman.direction.dirY;
-            var vX = tX - blinky.getGridPosX();
-            var vY = tY - blinky.getGridPosY();
-            tX = Math.abs(blinky.getGridPosX() + vX * 2);
-            tY = Math.abs(blinky.getGridPosY() + vY * 2);
+            var tX = pacman.getGridPosX();
+            var tY = pacman.getGridPosY();
+            var dist = Math.sqrt(Math.pow(pX - tX, 5) + Math.pow(pY - tY, 5));
+
+            if (dist < 10) {
+              tX = this.gridBaseX;
+              tY = this.gridBaseY;
+            }
+            // var tX = pacman.getGridPosX() + 2 * pacman.direction.dirX;
+            // var tY = pacman.getGridPosY() + 2 * pacman.direction.dirY;
+            // var vX = tX - blinky.getGridPosX();
+            // var vY = tY - blinky.getGridPosY();
+            // tX = Math.abs(blinky.getGridPosX() + vX * 2);
+            // tY = Math.abs(blinky.getGridPosY() + vY * 2);
             break;
 
             // target: pacman, until pacman is closer than 5 grid fields, then back to scatter
@@ -919,6 +939,7 @@ function geronimo() {
         Math.pow(pX - 1 - tX, 2) + Math.pow(pY - tY, 2)
       );
 
+      
       // Sort possible directions by distance
       function compare(a, b) {
         if (a.distance < b.distance) return -1;
@@ -927,28 +948,46 @@ function geronimo() {
       }
       var dirs2 = dirs.sort(compare);
 
+      logger.enableLogger();
+      console.log(dirs2);
+      logger.disableLogger();
+
       var r = this.dir;
       var j;
 
       if (this.dead) {
+        //var found = false;
         for (var i = dirs2.length - 1; i >= 0; i--) {
           if (
             dirs2[i].field != "wall" &&
             !dirs2[i].dir.equals(this.getOppositeDirection())
           ) {
+            //found = true;
             r = dirs2[i].dir;
           }
         }
+        //if(!found){
+        //  r = this.getOppositeDirection();
+        //}
       } else {
+        //var found = false;
         for (var i = dirs2.length - 1; i >= 0; i--) {
           if (
             dirs2[i].field != "wall" &&
             dirs2[i].field != "door" &&
             !dirs2[i].dir.equals(this.getOppositeDirection())
           ) {
+            //found = true;
             r = dirs2[i].dir;
           }
+
+          //if(!found){
+          //  r = this.getOppositeDirection();
+          //}
         }
+      }
+      if(r && r.field === "wall"){
+        r = this.getOppositeDirection();
       }
       this.directionWatcher.set(r);
       return r;

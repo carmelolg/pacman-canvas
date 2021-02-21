@@ -236,7 +236,7 @@
             "posX": [
                 { "col": 1, "type": "wall" },
                 { "col": 2, "type": "pill" },
-				{ "col": 3, "type": "pill" },
+				{ "col": 3, "type": "wall" },
                 { "col": 4, "type": "pill" },
 				{ "col": 5, "type": "wall" },
                 { "col": 6, "type": "wall" },
@@ -249,7 +249,7 @@
 				{ "col": 13, "type": "pill" },
                 { "col": 14, "type": "wall" },
 				{ "col": 15, "type": "pill" },
-                { "col": 16, "type": "pill" },
+                { "col": 16, "type": "wall" },
 				{ "col": 17, "type": "pill" },
                 { "col": 18, "type": "wall" }
              ] 
