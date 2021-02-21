@@ -947,11 +947,7 @@ function geronimo() {
         return 0;
       }
       var dirs2 = dirs.sort(compare);
-
-      logger.enableLogger();
-      console.log(dirs2);
-      logger.disableLogger();
-
+      
       var r = this.dir;
       var j;
 
