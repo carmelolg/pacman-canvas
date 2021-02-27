@@ -947,7 +947,7 @@ function geronimo() {
         return 0;
       }
       var dirs2 = dirs.sort(compare);
-      
+
       var r = this.dir;
       var j;
 
@@ -966,20 +966,15 @@ function geronimo() {
         //  r = this.getOppositeDirection();
         //}
       } else {
-        //var found = false;
         for (var i = dirs2.length - 1; i >= 0; i--) {
           if (
             dirs2[i].field != "wall" &&
             dirs2[i].field != "door" &&
             !dirs2[i].dir.equals(this.getOppositeDirection())
           ) {
-            //found = true;
             r = dirs2[i].dir;
           }
 
-          //if(!found){
-          //  r = this.getOppositeDirection();
-          //}
         }
       }
       if(r && r.field === "wall"){
@@ -1529,8 +1524,8 @@ function geronimo() {
       game.showContent("highscore-content");
       getHighscore();
     });
-    $(document).on("click", ".button#instructions", function (event) {
-      game.showContent("instructions-content");
+    $(document).on("click", ".button#history", function (event) {
+      game.showContent("history-content");
     });
     $(document).on("click", ".button#info", function (event) {
       game.showContent("info-content");
