@@ -227,12 +227,17 @@ function geronimo() {
     };
 
     this.newGame = function () {
-      var r = confirm("Are you sure you want to restart?");
-      if (r) {
-        //console.log("new Game");
-        this.init(0);
-        this.forceResume();
+      if (game.started) {
+        var r = confirm("Are you sure you want to restart?");
+        if (r) {
+          //console.log("new Game");
+          this.init(0);
+          this.forceResume();
+        }
+      } else {
+        game.pauseResume();
       }
+
     };
 
     this.nextLevel = function () {
@@ -432,6 +437,7 @@ function geronimo() {
       // TODO: why are there 2 state checks?
       if (state === 0) {
         game.reset();
+        //game.buildWalls();
       }
       pacman.reset();
 
@@ -851,10 +857,10 @@ function geronimo() {
         // go Home
         var tX = this.startPosX / 30;
         var tY = this.startPosY / 30;
-        if(this.name === GHOSTS.INKY){
+        if (this.name === GHOSTS.INKY) {
           tX = (this.startPosX - 1) / 30;
         }
-        if(this.name === GHOSTS.BLINKY){
+        if (this.name === GHOSTS.BLINKY) {
           tX = (this.startPosX + 1) / 30;
         }
 
@@ -939,7 +945,7 @@ function geronimo() {
         Math.pow(pX - 1 - tX, 2) + Math.pow(pY - tY, 2)
       );
 
-      
+
       // Sort possible directions by distance
       function compare(a, b) {
         if (a.distance < b.distance) return -1;
@@ -977,7 +983,7 @@ function geronimo() {
 
         }
       }
-      if(r && r.field === "wall"){
+      if (r && r.field === "wall") {
         r = this.getOppositeDirection();
       }
       this.directionWatcher.set(r);
@@ -1497,6 +1503,7 @@ function geronimo() {
         pacman.directionWatcher.set(down);
       }
     });
+
 
     // Mobile Control Buttons
     $(document).on("touchend mousedown", "#up", function (event) {
