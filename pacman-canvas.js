@@ -228,7 +228,7 @@ function geronimo() {
 
     this.newGame = function () {
       if (game.started) {
-        var r = confirm("Are you sure you want to restart?");
+        var r = confirm("Vuoi iniziare una nuova partita?");
         if (r) {
           //console.log("new Game");
           this.init(0);
