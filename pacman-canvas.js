@@ -275,25 +275,25 @@ function geronimo() {
     this.getLevelTitle = function () {
       switch (this.level) {
         case 2:
-          return '"The chase begins"'
+          return '"Level 2"'
         case 3:
-          return '"Inkys awakening"'
+          return '"Level 3"'
         case 4:
-          return '"Clydes awakening"'
+          return '"Level 4"'
         case 5:
-          return '"need for speed"'
+          return '"Level 5"'
         case 6:
-          return '"hunting season 1"'
+          return '"Level 6"'
         case 7:
-          return '"the big calm"'
+          return '"Level 7"'
         case 8:
-          return '"hunting season 2"'
+          return '"Level 8"'
         case 9:
-          return '"ghosts on speed"'
+          return '"Level 9"'
         case FINAL_LEVEL:
-          return '"The final chase"'
+          return '"Last level"'
         default:
-          return '"nothing new"'
+          return '"Level 0"'
       }
     }
 
