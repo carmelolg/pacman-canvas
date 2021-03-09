@@ -240,15 +240,14 @@ function geronimo() {
 
     this.nextLevel = function () {
       if (this.level === FINAL_LEVEL) {
-        //console.log("next level, " + FINAL_LEVEL + ", end game");
         game.endGame(true)
         game.showHighscoreForm()
         this.init(0)
       } else {
         game.level = game.level + 1;
-        // game.refreshRate = game.refreshRate - 3;
-        // game.ghostFrightenedTimer = game.ghostFrightenedTimer - 15;
-        //console.log("Level " + game.level);
+        game.refreshRate = game.refreshRate - 3;
+        game.ghostFrightenedTimer = game.ghostFrightenedTimer - 15;
+        
         game.pauseAndShowMessage(
           "Level " + game.level,
           this.getLevelTitle() + "<br/>(Click to continue!)"
